@@ -1,1 +1,50 @@
-style 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#333;
+}
+
+header{
+    background:#0d47a1;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+nav{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    background:#1565c0;
+    padding:15px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+nav a:hover{
+    color:#ffeb3b;
+}
+
+section{
+    width:90%;
+    max-width:1000px;
+    margin:40px auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+h2{
+    margin-bottom:15px;
+}
