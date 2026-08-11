@@ -64,7 +64,7 @@ function portfolioMessage() {
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    loadChart("NSE:NIFTY");
+    loadChart("NSE:RELIANCE");
 
     console.log(
         "Shyam Finance Hub loaded successfully."
