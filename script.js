@@ -1,13 +1,43 @@
-let currentStock = "NSE:NIFTY";
-
+let currentStock = "NSE:RELIANCE";
+let tvWidget = null;
 
 function loadChart(symbol) {
 
     currentStock = symbol;
 
-    document.getElementById("tradingview_chart").innerHTML = "";
+    const container = document.getElementById("tradingview_chart");
 
-    new TradingView.widget({
+    if (!container) {
+        console.log("Chart container not found");
+        return;
+    }
+
+    // अगर chart पहले से बना है तो उसी chart का symbol बदलें
+    if (tvWidget) {
+
+        try {
+
+            tvWidget.activeChart().setSymbol(
+                symbol,
+                "D"
+            );
+
+            return;
+
+        } catch (error) {
+
+            console.log(
+                "Existing chart change failed:",
+                error
+            );
+
+        }
+    }
+
+    // पहली बार chart बनाना
+    container.innerHTML = "";
+
+    tvWidget = new TradingView.widget({
 
         width: "100%",
 
@@ -34,6 +64,7 @@ function loadChart(symbol) {
         container_id: "tradingview_chart"
 
     });
+
 }
 
 
@@ -41,8 +72,20 @@ function loadChart(symbol) {
 
 function changeStock() {
 
+    const stockSelect =
+        document.getElementById("stockSelect");
+
+    if (!stockSelect) {
+        return;
+    }
+
     const selectedStock =
-        document.getElementById("stockSelect").value;
+        stockSelect.value;
+
+    console.log(
+        "Changing stock to:",
+        selectedStock
+    );
 
     loadChart(selectedStock);
 
@@ -62,12 +105,15 @@ function portfolioMessage() {
 
 /* PAGE LOAD */
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-    loadChart("NSE:RELIANCE");
+        loadChart("NSE:RELIANCE");
 
-    console.log(
-        "Shyam Finance Hub loaded successfully."
-    );
+        console.log(
+            "Shyam Finance Hub loaded successfully."
+        );
 
-});
+    }
+);
