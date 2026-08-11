@@ -8,112 +8,66 @@ function loadChart(symbol) {
     const container = document.getElementById("tradingview_chart");
 
     if (!container) {
-        console.log("Chart container not found");
         return;
     }
 
-    // अगर chart पहले से बना है तो उसी chart का symbol बदलें
-    if (tvWidget) {
+    // Existing TradingView chart को नया symbol दें
+    if (tvWidget && typeof tvWidget.activeChart === "function") {
 
         try {
-
-            tvWidget.activeChart().setSymbol(
-                symbol,
-                "D"
-            );
-
+            tvWidget.activeChart().setSymbol(symbol, "D");
             return;
-
         } catch (error) {
-
-            console.log(
-                "Existing chart change failed:",
-                error
-            );
-
+            console.log("Symbol change error:", error);
         }
     }
 
-    // पहली बार chart बनाना
+    // First chart load
     container.innerHTML = "";
 
     tvWidget = new TradingView.widget({
-
         width: "100%",
-
         height: 500,
-
         symbol: symbol,
-
         interval: "D",
-
         timezone: "Asia/Kolkata",
-
         theme: "dark",
-
         style: "1",
-
         locale: "en",
-
         enable_publishing: false,
-
         allow_symbol_change: true,
-
-        hide_side_toolbar: false,
-
         container_id: "tradingview_chart"
-
     });
-
 }
 
-
-/* STOCK SEARCH */
 
 function changeStock() {
 
-    const stockSelect =
-        document.getElementById("stockSelect");
+    const select = document.getElementById("stockSelect");
 
-    if (!stockSelect) {
+    if (!select) {
         return;
     }
 
-    const selectedStock =
-        stockSelect.value;
+    const selectedStock = select.value;
 
-    console.log(
-        "Changing stock to:",
-        selectedStock
-    );
+    console.log("Selected:", selectedStock);
 
     loadChart(selectedStock);
-
 }
 
-
-/* PORTFOLIO */
 
 function portfolioMessage() {
 
-    alert(
-        "Portfolio Tracker is coming soon! 📊"
-    );
+    alert("Portfolio Tracker is coming soon! 📊");
 
 }
 
 
-/* PAGE LOAD */
+document.addEventListener("DOMContentLoaded", function () {
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
+    console.log("Shyam Finance Hub loaded");
 
-        loadChart("NSE:RELIANCE");
+    loadChart("NSE:RELIANCE");
 
-        console.log(
-            "Shyam Finance Hub loaded successfully."
-        );
-
-    }
-);
+});
