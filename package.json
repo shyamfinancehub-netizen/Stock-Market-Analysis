@@ -1,0 +1,22 @@
+{
+  "name": "stock-market-analysis",
+  "version": "1.0.0",
+  "description": "Stock Market Analysis and Portfolio Tracking Application",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node backend/server.js"
+  },
+  "keywords": [
+    "stock-market",
+    "finance",
+    "portfolio",
+    "technical-analysis"
+  ],
+  "author": "Shyam Sunder Daga",
+  "license": "MIT",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18"
+  }
+}
